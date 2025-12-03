@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Matias - Desarrollador Backend especializado en Java y Spring Boot. Eficiencia, escalabilidad y calidad.">
+    <meta name="keywords" content="Backend Developer, Java, Spring Boot, REST API, MySQL, JPA, Hibernate">
+    <title>Matias | Backend Developer</title>
+    
+    <!-- Preconnect para recursos externos -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <style>
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #121212;
+            --bg-card: #151515;
+            --violet: #8b5cf6;
+            --violet-dark: #6d28d9;
+            --violet-darker: #4c1d95;
+            --violet-glow: rgba(139, 92, 246, 0.4);
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #6b7280;
+            --border: #262626;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================================
+           HEADER - GPU Accelerated
+           ============================================ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--violet);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--violet);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .lang-switch {
+            margin-left: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--violet);
+            color: var(--violet);
+        }
+
+        /* ============================================
+           HERO SECTION - Optimizado
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: var(--bg-primary);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--violet);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--violet);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            transform: translateZ(0);
+        }
+
+        .social-icon:hover {
+            background: var(--violet);
+            color: var(--bg-primary);
+            transform: translateY(-3px) translateZ(0);
+            box-shadow: 0 5px 20px var(--violet-glow);
+        }
+
+        .social-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--violet) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--violet);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            display: inline-block;
+            transform: translateZ(0);
+        }
+
+        .btn-primary {
+            background: var(--violet);
+            color: var(--text-primary);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--violet-dark);
+            transform: translateY(-2px) translateZ(0);
+            box-shadow: 0 6px 25px var(--violet-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--violet);
+            color: var(--violet);
+        }
+
+        /* ============================================
+           SECTIONS - Base
+           ============================================ */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--violet) 0%, var(--violet-dark) 100%);
+        }
+
+        /* ============================================
+           SOBRE MÍ
+           ============================================ */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+        
+        /* ============================================
+           TECH GRID - Performance Optimizado
+           ============================================ */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-card {
+            aspect-ratio: 1;
+            background: var(--bg-card);
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            cursor: default;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        border-color 0.3s ease,
+                        box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+            padding: 1rem;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, var(--violet-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .tech-card:hover::before {
+            opacity: 1;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-8px) scale(1.02) translateZ(0);
+            border-color: var(--violet);
+            box-shadow: 0 20px 60px -15px var(--violet-glow);
+        }
+
+        .tech-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+            transform: translateZ(0);
+        }
+
+        .tech-card:hover .tech-logo {
+            transform: scale(1.1) translateZ(0);
+        }
+
+        .tech-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .tech-card:hover .tech-name {
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           PROYECTOS - Optimizado
+           ============================================ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        border-color 0.3s ease,
+                        box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--violet) 0%, var(--violet-dark) 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px) translateZ(0);
+            border-color: var(--violet);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-context {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-impact {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--violet);
+        }
+
+        .project-impact h4 {
+            color: var(--violet);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-impact ul {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .project-impact li {
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-impact li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--violet);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--violet);
+            border-radius: 4px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .architecture-details {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .architecture-details ul {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .architecture-details li {
+            padding-left: 1rem;
+            position: relative;
+            margin-bottom: 0.3rem;
+        }
+
+        .architecture-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--violet);
+        }
+
+        /* ============================================
+           CONTACTO - Optimizado
+           ============================================ */
+        .contact-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            scroll-margin-top: 20px;
+        }
+
+        .contact-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-header h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            background: linear-gradient(135deg, #a685ff 0%, #d4b3ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--violet), var(--violet-dark));
+        }
+
+        .contact-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        .form-container {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--violet);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #ff6b6b;
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            margin-top: 0.375rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--violet);
+            border: none;
+            border-radius: 6px;
+            padding: 0.9rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+            transform: translateZ(0);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--violet-dark);
+            transform: translateY(-2px) translateZ(0);
+            box-shadow: 0 6px 25px var(--violet-glow);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .submit-btn.loading .btn-text { display: none; }
+        .submit-btn.loading .loading-spinner { display: block; }
+
+        .success-message {
+            display: none;
+            background: rgba(72, 187, 120, 0.1);
+            border: 1px solid rgba(72, 187, 120, 0.3);
+            border-left: 3px solid #48bb78;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .success-message.show {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .success-icon {
+            width: 24px;
+            height: 24px;
+            background: #48bb78;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .success-icon::after {
+            content: '✓';
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .success-text {
+            color: #48bb78;
+            font-weight: 500;
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--violet);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* ============================================
+           ANIMACIONES - Lazy Load Optimizado
+           ============================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 90vh;
+                padding: 1.5rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .social-links {
+                gap: 0.8rem;
+            }
+
+            .social-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .social-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .form-container {
+                padding: 1.75rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ============================================
+           SMOOTH SCROLL - Nativo Optimizado
+           ============================================ */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ============================================
+           ACCESIBILIDAD - Reduced Motion
+           ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* ============================================
+           OPTIMIZACIONES CRÍTICAS
+           ============================================ */
+        
+        /* Contenido pintado inicialmente - Above the fold */
+        .hero,
+        header {
+            content-visibility: auto;
+        }
+
+        /* Lazy rendering para secciones fuera del viewport */
+        section:not(.hero) {
+            content-visibility: auto;
+            contain-intrinsic-size: 500px;
+        }
+
+        /* Optimización de imágenes */
+        img {
+            content-visibility: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <a href="#top" class="logo">Matias</a>
+            <ul class="nav-links">
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#stack">Stack</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="lang-switch" onclick="alert('English version: en.html')">EN</button>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <h1>Hola, Soy Matias</h1>
+            <h2>Desarrollador Backend</h2>
+            <p class="tagline">Eficiencia. Escalabilidad. Calidad.</p>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/matiasrodriguezalejandro/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="https://github.com/matias-devv" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rmatias.dev@gmail.com" class="social-icon" aria-label="Email">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="CV-Matias-Rodriguez-Desarollador-Java.pdf" download class="btn btn-primary">Descargar CV</a>
+                <a href="#proyectos" class="btn btn-secondary">Ver proyectos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi">
+        <h2 class="section-title">Sobre mí</h2>
+        <div class="about-content">
+            <p>Desarrollador Backend especializado en Java y Spring Boot, con foco en arquitecturas escalables y código mantenible. Construyo APIs REST robustas y sistemas que resuelven problemas reales. Actualmente estoy cursando mi segundo año de Tecnicatura en Desarrollo de Software, con certificaciones en Spring Boot y bases de datos relacionales. Me desenvuelvo muy bien en entornos colaborativos y disfruto asumir desafios que impulsen mi crecimiento.</p>
+        </div>
+    </section>
+
+    <!-- STACK TÉCNICO -->
+    <section id="stack">
+        <h2 class="section-title">Stack Técnico</h2>
+        <div class="tech-grid">
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="java.svg" alt="Java" width="48" height="48" loading="lazy">
+                <div class="tech-name">Java</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="springboot.svg" alt="Spring Boot" width="48" height="48" loading="lazy">
+                <div class="tech-name">Spring Boot</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="hibernate.svg" alt="Hibernate" width="48" height="48" loading="lazy">
+                <div class="tech-name">Hibernate</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="springdata.svg" alt="Spring Data" width="48" height="48" loading="lazy">
+                <div class="tech-name">Spring Data</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="mysql.svg" alt="MySQL" width="48" height="48" loading="lazy">
+                <div class="tech-name">MySQL</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="maven.svg" alt="Maven" width="48" height="48" loading="lazy">
+                <div class="tech-name">Maven</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="docker.svg" alt="Docker" width="48" height="48" loading="lazy">
+                <div class="tech-name">Docker</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="postman.svg" alt="Postman" width="48" height="48" loading="lazy">
+                <div class="tech-name">Postman</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="git.svg" alt="Git" width="48" height="48" loading="lazy">
+                <div class="tech-name">Git</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="html.svg" alt="HTML" width="48" height="48" loading="lazy">
+                <div class="tech-name">Html</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="css.svg" alt="CSS" width="48" height="48" loading="lazy">
+                <div class="tech-name">Css</div>
+            </div>
+            <div class="tech-card fade-in">
+                <img class="tech-logo" src="javascript.svg" alt="JavaScript" width="48" height="48" loading="lazy">
+                <div class="tech-name">JavaScript</div>
+            </div>
+        </div> 
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos">
+        <h2 class="section-title">Proyectos</h2>
+        
+        <div class="projects-grid">
+            <article class="project-card fade-in">
+                <h3>Floss Odontologica</h3>
+                <p class="project-context">Sistema completo de gestión diseñado para optimizar la administración de una clínica odontológica, eliminando procesos manuales y centralizando información crítica.</p>
+                
+                <div class="project-impact">
+                    <h4>Impacto</h4>
+                    <ul>
+                        <li>Reducción del 70% en tiempo administrativo</li>
+                        <li>Eliminación del 85% de uso de papel y hojas de cálculo</li>
+                        <li>Automatización completa de gestión de turnos y horarios</li>
+                    </ul>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Servlets</span>
+                    <span class="tech-tag">JSP</span>
+                    <span class="tech-tag">Html</span>
+                    <span class="tech-tag">Css</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">JPA</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Maven</span>
+                    <span class="tech-tag">Git</span>
+                </div>
+
+                <div class="architecture-details">
+                    <strong>Arquitectura:</strong>
+                    <ul>
+                        <li>8 entidades con 15 relaciones bidireccionales</li>
+                        <li>Arquitectura multicapa: igu, lógica, persistencia</li>
+                        <li>Sistema de turnos con bloques de 30 minutos</li>
+                        <li>Control de acceso basado en roles</li>
+                        <li>Eliminación automática de conflictos de horarios</li>
+                    </ul>
+                </div>
+
+                <a href="#" class="btn btn-secondary">Ver Proyecto</a>
+            </article>
+
+            <article class="project-card fade-in">
+                <h3>Sistema de Gestión de Ventas e Inventario</h3>
+                <p class="project-context">API REST profesional para la gestión integral de ventas, productos y stock, con automatización de cálculos y análisis en tiempo real.</p>
+                
+                <div class="project-impact">
+                    <h4>Impacto</h4>
+                    <ul>
+                        <li>API con 19 endpoints RESTful documentados</li>
+                        <li>Automatización del 100% de cálculos de ventas</li>
+                        <li>Dashboard de análisis diario en tiempo real</li>
+                    </ul>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">Spring Data</span>
+                    <span class="tech-tag">Hibernate</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Maven</span>
+                    <span class="tech-tag">JPA</span>
+                    <span class="tech-tag">REST API</span>
+                    <span class="tech-tag">Git</span>
+                </div>
+
+                <div class="architecture-details">
+                    <strong>Arquitectura:</strong>
+                    <ul>
+                        <li>4 entidades relacionales con esquema normalizado</li>
+                        <li>Arquitectura MVC: Controller → Service → Repository</li>
+                        <li>DTOs optimizados para transferencia de datos</li>
+                        <li>Cálculo automático de totales y descuentos</li>
+                        <li>Respuestas JSON estandarizadas</li>
+                    </ul>
+                </div>
+
+                <a href="#" class="btn btn-secondary">Ver Repositorio</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contact-section">
+        <div class="contact-wrapper">
+            <div class="contact-header">
+                <h2>Contacto</h2>
+                <p>Trabajemos juntos para convertir grandes visiones en realidad</p>
+            </div>
+
+            <div class="form-container">
+                <form id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name">
+                        <div class="error-message" id="nombreError">Por favor ingresa tu nombre</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email">
+                        <div class="error-message" id="emailError">Por favor ingresa un email válido</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Escribe aqui tu mensaje..."></textarea>
+                        <div class="error-message" id="mensajeError">Por favor escribe un mensaje</div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Enviar mensaje</span>
+                        <div class="loading-spinner"></div>
+                    </button>
+
+                    <div class="success-message" id="successMessage">
+                        <div class="success-icon"></div>
+                        <span class="success-text">¡Mensaje enviado con éxito! Te responderé pronto.</span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/matiasrodriguezalejandro/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+
+                <a href="https://github.com/matias-devv" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rmatias.dev@gmail.com" class="social-icon" aria-label="Email">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Matias | Desarrollador Backend | <a href="en.html">English Version</a></p>
+    </footer>
+    <!-- EMAILJS SDK - Precargado -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+         // ============================================
+        // CONFIGURACIÓN
+        // ============================================
+        const CONFIG = {
+            emailjs: {
+                serviceID: 'service_6q19tii',
+                templateID: 'template_pg0d7ra',
+                publicKey: 'k8FbIoYGB5fx1XHEb'
+            },
+            observer: {
+                threshold: 0.08,
+                rootMargin: '80px 0px'
+            }
+        };
+
+        // ============================================
+        // INTERSECTION OBSERVER - Ultra Optimizado
+        // ============================================
+        let fadeObserver;
+        
+        const initObserver = () => {
+            fadeObserver = new IntersectionObserver((entries) => {
+                // Usar requestAnimationFrame para suavidad
+                requestAnimationFrame(() => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            fadeObserver.unobserve(entry.target);
+                        }
+                    });
+                });
+            }, CONFIG.observer);
+
+            // Observar todos los elementos de una vez
+            document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+        };
+
+        // ============================================
+        // LAZY LOAD EMAILJS - Solo cuando se necesite
+        // ============================================
+        let emailjsLoaded = false;
+
+        const loadEmailJS = () => {
+            if (emailjsLoaded) return Promise.resolve();
+            
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+                script.async = true;
+                script.onload = () => {
+                    emailjs.init(CONFIG.emailjs.publicKey);
+                    emailjsLoaded = true;
+                    resolve();
+                };
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        };
+
+        // ============================================
+        // FORMULARIO - Event Delegation & Optimization
+        // ============================================
+        let formInitialized = false;
+        
+        const initForm = () => {
+            if (formInitialized) return;
+            formInitialized = true;
+
+            const form = document.getElementById('contactForm');
+            const submitBtn = form.querySelector('.submit-btn');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Cache de elementos
+            const inputs = {
+                nombre: document.getElementById('nombre'),
+                email: document.getElementById('email'),
+                mensaje: document.getElementById('mensaje')
+            };
+
+            const errors = {
+                nombre: document.getElementById('nombreError'),
+                email: document.getElementById('emailError'),
+                mensaje: document.getElementById('mensajeError')
+            };
+
+            // Validación optimizada
+            const validators = {
+                nombre: (val) => val.trim().length > 0,
+                email: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+                mensaje: (val) => val.trim().length > 0
+            };
+
+            const toggleError = (field, show) => {
+                inputs[field].classList.toggle('error', show);
+                errors[field].classList.toggle('show', show);
+            };
+
+            // Event delegation para inputs (más eficiente)
+            form.addEventListener('input', (e) => {
+                const field = e.target.id;
+                if (validators[field]) {
+                    toggleError(field, false);
+                }
+            }, { passive: true });
+
+            // Submit optimizado
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Validar
+                let isValid = true;
+                Object.keys(validators).forEach(field => {
+                    const valid = validators[field](inputs[field].value);
+                    if (!valid) {
+                        toggleError(field, true);
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) return;
+
+                // UI feedback inmediato
+                submitBtn.disabled = true;
+                submitBtn.classList.add('loading');
+                successMsg.classList.remove('show');
+
+                try {
+                    // Cargar EmailJS solo cuando se envía el form
+                    await loadEmailJS();
+                    
+                    await emailjs.send(
+                        CONFIG.emailjs.serviceID,
+                        CONFIG.emailjs.templateID,
+                        {
+                            from_name: inputs.nombre.value.trim(),
+                            from_email: inputs.email.value.trim(),
+                            message: inputs.mensaje.value.trim(),
+                            to_name: 'Matías'
+                        },
+                        CONFIG.emailjs.publicKey
+                    );
+
+                    // Success
+                    successMsg.classList.add('show');
+                    form.reset();
+                    setTimeout(() => successMsg.classList.remove('show'), 5000);
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Hubo un error al enviar el mensaje. Por favor intenta nuevamente.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                }
+            });
+        };
+
+        // ============================================
+        // LAZY INIT - Solo cuando el usuario scrollea cerca del form
+        // ============================================
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    initForm();
+                    contactObserver.disconnect();
+                }
+            });
+        }, { rootMargin: '200px' });
+
+        // ============================================
+        // INICIALIZACIÓN OPTIMIZADA
+        // ============================================
+        const init = () => {
+            // Observer de animaciones
+            initObserver();
+            
+            // Observer del formulario (lazy)
+            const contactSection = document.getElementById('contacto');
+            if (contactSection) {
+                contactObserver.observe(contactSection);
+            }
+        };
+
+        // Ejecutar cuando DOM esté listo (sin bloquear)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        // ============================================
+        // PASSIVE EVENT LISTENERS para scroll performance
+        // ============================================
+        document.addEventListener('scroll', () => {}, { passive: true });
+        document.addEventListener('touchstart', () => {}, { passive: true });
+        document.addEventListener('touchmove', () => {}, { passive: true });
+    </script>
+</body>
+</html>
